@@ -1,0 +1,10 @@
+# This script solves an annoying popup that a lot of users receive: 
+# "An update is ready to install. [app] is trying to add a new helper tool."
+ 
+# This happens when /Applications/[app_path].app is owned by root, rather than the user. 
+# Chown the app to directory to your user profile to undo root ownership.
+# For example, Slack is a usual suspect
+ 
+ 
+sudo chown -R %UserId%:staff /Applications/Slack.app
+echo "Command completed successfully"

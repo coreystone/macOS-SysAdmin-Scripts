@@ -1,0 +1,37 @@
+# When you set up a user's laptop on your home network before shipping it to them, 
+# the SSID for your home network will be preserved on the machine unless you manually remove it.
+# This script remotely removes your network's SSID from the list of preferred networks on the user's device.
+ 
+# Check if an SSID exists and delete it if it does.
+ 
+### networksetup -listpreferredwirelessnetworks en0: Lists PREFERRED NETWORKS
+ 
+target_SSID_1 = "string-name" # the name of your wireless network
+
+result = $(networksetup -listpreferredwirelessnetworks en0 | grep "$target_SSID_1")
+ 
+# Search for it
+if ["$result" = ""]; then
+	echo "$target_SSID_1 SSID Not Found"
+    
+else
+	# Delete it
+	networksetup -removepreferredwirelessnetwork en0 "$target_SSID_1"
+	echo "$target_SSID_1 SSID Removed"
+fi
+ 
+
+# If you have more than one target SSID, for example...
+target_SSID_2="string-name"
+result = $(networksetup -listpreferredwirelessnetworks en0 | grep "$target_SSID_2")
+ 
+# Search for it
+if [ "$result" = "" ]; then
+	echo "$target_SSID_2 SSID Not Found"
+	exit 0
+else
+	# Delete it
+	networksetup -removepreferredwirelessnetwork en0 "$target_SSID_2"
+	echo "$target_SSID_2 SSID Removed"
+ 
+exit 0

@@ -1,0 +1,6 @@
+# Remotely downgrade an Admin user profile to Standard
+# %UserId% is the variable used by Mosyle which grabs the username for a user's profile based on the device/assignee
+# Thus, this command will apply to the user's local account
+  
+sudo dseditgroup -o edit -d %UserId% -t user admin 
+dscl . -read /groups/admin GroupMembership

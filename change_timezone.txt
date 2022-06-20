@@ -1,0 +1,11 @@
+Change Device Time Zone:
+# For users that need to change their Time Zone (System Preferences > Date & Time)
+  
+# First, run to see list of TZ's: 
+sudo systemsetup -listtimezones
+
+# Then, pass the TZ to -settimezone
+# sudo systemsetup -settimezone [TZ_from_previous_command]
+ 
+# Example: Change time to PST (Los Angeles time) 
+sudo systemsetup -settimezone America/Los_Angeles

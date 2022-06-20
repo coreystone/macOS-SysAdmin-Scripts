@@ -1,0 +1,6 @@
+# Remotely elevate a Standard user profile to Admin
+# %UserId% is the variable used by Mosyle which grabs the username for a user's profile based on the device/assignee
+# Thus, this command will apply to the user's local account
+  
+dscl . -append /groups/admin GroupMembership %UserId%
+dscl . -read /groups/admin GroupMembership
